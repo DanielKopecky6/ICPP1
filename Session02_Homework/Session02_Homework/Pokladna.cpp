@@ -44,7 +44,7 @@ Uctenka & Pokladna::dejUctenku(int id)
 
 }
 
-double Pokladna::dejCastku() const
+double Pokladna::dejCastku()
 {
 	double castka = 0;
 	for (int i = 0; i < pocetVydanychUctenek; i++) {
@@ -53,7 +53,7 @@ double Pokladna::dejCastku() const
 	return castka;
 }
 
-double Pokladna::dejCastkuVcDph() const
+double Pokladna::dejCastkuVcDph()
 {
 	double castka = 0;
 	for (int i = 0; i < pocetVydanychUctenek; i++) {
