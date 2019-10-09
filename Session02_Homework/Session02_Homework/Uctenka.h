@@ -1,8 +1,8 @@
 #pragma once
-#ifndef _UCTENKA_H
+#ifndef UCTENKA_H
+#defina UCTENKA_H
 
 #include <iostream>
-#include <string>
 class Uctenka
 {
 private:
