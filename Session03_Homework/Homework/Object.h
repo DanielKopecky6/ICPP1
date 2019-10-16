@@ -8,7 +8,6 @@ public:
 	double x;
 	double y;
 public:
-	//Object() {}; bezparametricky konstruktor dle zadani nevytvaret
 	Object(int aId); 
 	virtual ~Object() {};
 
@@ -16,7 +15,7 @@ public:
 	double GetX();
 	void SetY(double aY); 	
 	double GetY(); 
-	int GetI(); 
+	int GetId(); 
 		
 	
 

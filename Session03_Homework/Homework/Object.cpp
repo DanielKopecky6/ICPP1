@@ -21,7 +21,7 @@ double Object::GetY()
 	return y;
 }
 
-int Object::GetI()
+int Object::GetId()
 {
 	return id;
 }

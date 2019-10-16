@@ -5,8 +5,8 @@ StaticObject::ObstructionType StaticObject::GetObstructionType()
 	return obstruction;
 }
 
-StaticObject::StaticObject(int aId, ObstructionType aObstructionType)
+StaticObject::StaticObject(int aId, ObstructionType aObstructionType) : Object(aId)
 {
-	Object::id = aId;
+	id = aId;
 	obstruction = aObstructionType;
 }
