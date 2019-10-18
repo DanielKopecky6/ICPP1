@@ -1,3 +1,2 @@
-﻿  Game.cpp
-c:\users\dan\source\repos\session03_homework\homework\game.cpp(68): warning C4715: Game::FindMovingObjectInArea: ne všechny cesty k ovládacím prvkům vrací hodnotu
+﻿  Source.cpp
   Homework.vcxproj -> C:\Users\Dan\source\repos\Session03_Homework\Debug\Homework.exe

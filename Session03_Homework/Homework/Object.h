@@ -12,10 +12,10 @@ public:
 	virtual ~Object() {};
 
 	void SetX(double aX); 
-	double GetX();
+	double GetX() const;
 	void SetY(double aY); 	
-	double GetY(); 
-	int GetId(); 
+	double GetY() const;
+	int GetId() const; 
 		
 	
 

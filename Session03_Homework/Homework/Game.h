@@ -6,13 +6,14 @@
 
 struct Game {
 private:
-	
+	int numberOfMaxEntries;
+	int numberOfObjects;
 
 public:
-	Game();
+	Game(int numberOfMaxEntries);
 	Object ** objectsField;
-	void insertObject(Object* aObject);
-	int* findStaticObject(double xMin, double xMax, double yMin, double yMax);
+	void InsertObject(Object* aObject);
+	int* FindStaticObject(double xMin, double xMax, double yMin, double yMax);
 	MovingObject** FindMovingObjectInArea(double x, double y, double r);
 	MovingObject** FindMovingObjectInArea(double x, double y, double r, double umin, double umax);
 };

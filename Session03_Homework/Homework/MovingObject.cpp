@@ -5,19 +5,21 @@
 #include <cmath>
 #include <stdexcept>
 
-
-
-
+MovingObject::MovingObject(int aId) : Object (id)
+{
+	id = aId;
+}
 
 void MovingObject::SetAngle(double aAngle)
 {
 	if (aAngle > MINIMUM_ANGLE && aAngle < MAXIMUM_ANGLE) {
 		angle = aAngle;
-	}
+	}else{
 	throw std::invalid_argument("Bad value for angle");
+	}
 }
 
-double MovingObject::getAngle()
+double MovingObject::getAngle() const
 {
 	return angle;
 }

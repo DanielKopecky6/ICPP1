@@ -1,75 +1,135 @@
 #include "Game.h"
 #include<iostream>
 
-int ObjectsSize = 10;
-int NumberOfObjects = 0;
-typedef Object* ObjectPtr;
-ObjectPtr * objectsField = new ObjectPtr[NumberOfObjects];
-//
-//Object* objekt = *Game::objectsField;
-//objects = new Object[];
-
-Game::Game()
+Game::Game(int aNumberOfMaxEntries)
 {
-	objectsField = new Object*[ObjectsSize];
+	objectsField = new Object*[aNumberOfMaxEntries];
+	numberOfMaxEntries = aNumberOfMaxEntries;
+	numberOfObjects = 0;
 }
 
-void Game::insertObject(Object * aObject)
+void Game::InsertObject(Object * aObject)
 {
-		if(NumberOfObjects < ObjectsSize){
-		objectsField[NumberOfObjects++] = aObject;
+		if(numberOfObjects < numberOfMaxEntries){
+		objectsField[numberOfObjects++] = aObject;
+		}
+		else {
+
+throw std::out_of_range("Maximum number of objects for this Game already inserted.");
+
 		}
 	
 }
 
-int * Game::findStaticObject(double xMin, double xMax, double yMin, double yMax)
+int * Game::FindStaticObject(double xMin, double xMax, double yMin, double yMax)
 {
-	int * idInArea;
-	idInArea = new int[NumberOfObjects];
-	int numberOfId = 0;
-	for (int i = 0; i < NumberOfObjects; i++)
+	
+	int numberOfIds = 0;
+	for (int i = 0; i < numberOfObjects; i++)
 	{
-		Object objekt = *objectsField[i];
-		if (objekt.GetX() > xMin && objekt.GetX() < xMax && objekt.GetY() > yMin && objekt.GetY() < yMax) {
-			
-			idInArea[numberOfId++] = objekt.GetId();
-
-			std::cout << "jsmetu" << idInArea << std::endl;
-			
+		StaticObject* staticObject = dynamic_cast<StaticObject*>(objectsField[i]);
+		if (staticObject != nullptr){
+		if (staticObject->GetX() > xMin && staticObject->GetX() < xMax && staticObject->GetY() > yMin && staticObject->GetY() < yMax) {
+			numberOfIds++;	
+			}
 		}
-		
 	}
+		if (numberOfIds == 0) {
+			return nullptr;
+		}
+		int * idInArea;
+		idInArea = new int[numberOfObjects];
+		int idsFound = 0;
+		for (int i = 0; i < numberOfObjects; i++)
+		{	
+			StaticObject* staticObject = dynamic_cast<StaticObject*>(objectsField[i]);
+			if (staticObject != nullptr) {
+				if (staticObject->GetX() > xMin && staticObject->GetX() < xMax && staticObject->GetY() > yMin && staticObject->GetY() < yMax) {
+					idInArea[idsFound++] = objectsField[i]->GetId();
+				}
+			}
+		}
+	
 	return idInArea;
 }
 
 MovingObject ** Game::FindMovingObjectInArea(double x, double y, double r)
 {
-	MovingObject ** MovingObjects;
-	MovingObjects = new MovingObject*[ObjectsSize];
-	int MovingObjectsCount = 0;
-	for (int i = 0; i < NumberOfObjects; i++)
+	
+	int numberOfMovingObjects = 0;
+	for (int i = 0; i < numberOfObjects; i++)
 
 	{
-		Object objekt = *objectsField[i];
-		
-		if ((objekt.GetX() - x) * (objekt.GetX() -x) + (objekt.GetY() - y) * (objekt.GetY() - y) <= r*r) {
-
-			MovingObjects[MovingObjectsCount++] = (MovingObject*)&objekt;
+		MovingObject* movingObject = dynamic_cast<MovingObject*>(objectsField[i]);
+		if (movingObject != nullptr)
+		{
+		if ((movingObject->GetX() - x) * (movingObject->GetX() -x) + (movingObject->GetY() - y) * (movingObject->GetY() - y) <= r*r) {
+			numberOfMovingObjects++;
+			
 
 		}
-
-		return MovingObjects;
-
-
+		}
 	}
+		if (numberOfMovingObjects == 0) {
+			return nullptr;
+		}
+		MovingObject ** MovingObjects;
+		MovingObjects = new MovingObject*[numberOfMaxEntries];
+		int idsFound = 0;
 
-
-	
-	objectsField[0] = MovingObjects[0];
+		for (int i = 0; i < numberOfObjects; i++)
+		{
+			MovingObject* movingObject = dynamic_cast<MovingObject*>(objectsField[i]);
+			if (movingObject != nullptr)
+			{
+				if ((movingObject->GetX() - x) * (movingObject->GetX() - x) + (movingObject->GetY() - y) * (movingObject->GetY() - y) <= r * r) {
+					MovingObjects[idsFound++] = movingObject;
+				}
+			}
+		}
+		return MovingObjects;
 }
 
 MovingObject ** Game::FindMovingObjectInArea(double x, double y, double r, double umin, double umax)
 {
-	// ze zadani jsem nepochopil co ma predstavovat uhel natoceni, nebo jak podle nej vyhledavat.
-	return nullptr;
+
+	int numberOfMovingObjects = 0;
+	for (int i = 0; i < numberOfObjects; i++)
+
+	{
+		MovingObject* movingObject = dynamic_cast<MovingObject*>(objectsField[i]);
+		if (movingObject != nullptr)
+		{
+			if ((movingObject->GetX() - x) * (movingObject->GetX() - x) + (movingObject->GetY() - y) * (movingObject->GetY() - y) <= r * r) {
+				numberOfMovingObjects++;
+			}
+
+		}
+
+	}
+	if (numberOfMovingObjects == 0) {
+		return nullptr;
+	}
+	MovingObject ** MovingObjects;
+	MovingObjects = new MovingObject*[numberOfMaxEntries];
+	int idsFound = 0;
+
+	for (int i = 0; i < numberOfObjects; i++)
+	{
+		MovingObject* movingObject = dynamic_cast<MovingObject*>(objectsField[i]);
+		if (movingObject != nullptr)
+		{
+			if (((movingObject->GetX() - x) * (movingObject->GetX() - x) + (movingObject->GetY() - y) * (movingObject->GetY() - y) <= r * r) && (movingObject->getAngle()) >= umin && movingObject->getAngle() <= umax) {
+				MovingObjects[idsFound++] = movingObject;
+			}
+		}
+	}
+	return MovingObjects;
 }
+
+
+
+
+
+
+

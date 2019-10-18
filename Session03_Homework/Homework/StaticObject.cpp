@@ -1,6 +1,6 @@
 #include "StaticObject.h"
 
-StaticObject::ObstructionType StaticObject::GetObstructionType()
+ObstructionType StaticObject::GetObstructionType() const
 {
 	return obstruction;
 }

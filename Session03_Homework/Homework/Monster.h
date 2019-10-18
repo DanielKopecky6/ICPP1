@@ -8,8 +8,8 @@ private:
 	int hp;
 	int maxHp;
 public:
-	void SetHp(int aHp);
-	void SetMaxHp(int aMaxHp);
+	void SetHp(int aHp) const;
+	void SetMaxHp(int aMaxHp) const;
 	int getHp();
 	int getMaxHp();
 

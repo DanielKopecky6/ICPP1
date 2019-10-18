@@ -3,17 +3,17 @@
 #define STATIC_OBJECT_H
 
 #include "Object.h"
-
+typedef enum {
+	Rock, SmallPlant, BigPlant
+}ObstructionType;
 
 struct StaticObject : Object {
-	typedef enum {
-		Rock, SmallPlant, BigPlant
-	}ObstructionType;
+
 
 private:
 	ObstructionType obstruction;
 public:
-	ObstructionType GetObstructionType(); 
+	ObstructionType GetObstructionType() const; 
 	StaticObject(int aId, ObstructionType aObstructionType);
 		
 

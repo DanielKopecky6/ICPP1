@@ -7,8 +7,9 @@ struct MovingObject : Object {
 private:
 	double angle;
 public:
+	MovingObject(int aId);
 	void SetAngle(double angle);
-	double getAngle();
+	double getAngle() const;
 
 
 
