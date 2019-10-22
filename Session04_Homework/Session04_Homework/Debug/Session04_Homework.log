@@ -1,4 +1,6 @@
 ﻿  Source.cpp
-  Time.cpp
-  Generování kódu...
+c:\users\dan\source\repos\session04_homework\session04_homework\source.cpp(24): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+c:\users\dan\source\repos\session04_homework\session04_homework\source.cpp(45): warning C4018: <: signed/unsigned – neshoda
+c:\users\dan\source\repos\session04_homework\session04_homework\source.cpp(53): warning C4018: <: signed/unsigned – neshoda
+c:\users\dan\source\repos\session04_homework\session04_homework\source.cpp(34): warning C4101: time: neodkazovaná lokální proměnná
   Session04_Homework.vcxproj -> C:\Users\Dan\source\repos\Session04_Homework\Debug\Session04_Homework.exe

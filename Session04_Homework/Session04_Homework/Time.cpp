@@ -29,7 +29,7 @@ Time::Time(int aHours, int aMinutes, int aSeconds) {
 	}
 };
 
-int Time::compareTo(IComparable* obj) {
+int Time::compareTo(IComparable* obj) const {
 	Time* timeCast = dynamic_cast<Time*>(obj);
 	int time1 = (this->_hours * HOURFORMATCONVERT) + (this->_minutes * MINUTEFORMATCONVERT) + this->_seconds;
 	int time2 = (timeCast->_hours * HOURFORMATCONVERT) + (timeCast->_minutes * MINUTEFORMATCONVERT) + timeCast->_seconds;
@@ -44,16 +44,9 @@ int Time::compareTo(IComparable* obj) {
 	}
 }
 
-std::string Time::toString() {
+std::string Time::toString() const {
 	return std::to_string(this->_hours) + ":" + std::to_string(this->_minutes) + ":" + std::to_string(this->_seconds);;
 }
 
-void Time::ArraySort(IComparable ** aArray, int aArraySize)
-{
-	IComparable** arraySort = new IComparable*[aArraySize];
-	Time* timePointer = dynamic_cast<Time*>(*aArray);
-	
-	
 
-}
 

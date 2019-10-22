@@ -3,7 +3,8 @@
 #define IOBJECT_H
 #include <string>
 struct IObject {
-	virtual std::string toString() const { return 0; };
+	virtual std::string toString() const = 0;
+	virtual ~IObject() { };
 
 
 };

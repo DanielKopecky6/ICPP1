@@ -12,12 +12,8 @@ private:
 		int _seconds;
 public:
 	Time(int aHours, int aMinutes, int _aSeconds);
-	int compareTo(IComparable * obj);
-	std::string toString();
-	void ArraySort(IComparable** aArray, int aArraySize);
-	
-
-
+	virtual int IComparable::compareTo(IComparable * obj) const override;
+	virtual std::string IComparable::toString() const override;
 };
 
 
