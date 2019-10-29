@@ -1,11 +1,23 @@
 #include "Game.h"
 #include<iostream>
 
+
+
 Game::Game(int aNumberOfMaxEntries)
 {
 	objectsField = new Object*[aNumberOfMaxEntries];
 	numberOfMaxEntries = aNumberOfMaxEntries;
 	numberOfObjects = 0;
+}
+
+Game::~Game()
+{
+	for (int i = 0; i < Game::numberOfObjects; i++)
+	{
+		delete Game::objectsField[i];
+	}
+	delete[] Game::objectsField;
+
 }
 
 void Game::InsertObject(Object * aObject)
@@ -38,7 +50,7 @@ int * Game::FindStaticObject(double xMin, double xMax, double yMin, double yMax)
 			return nullptr;
 		}
 		int * idInArea;
-		idInArea = new int[numberOfObjects];
+		idInArea = new int[numberOfIds];
 		int idsFound = 0;
 		for (int i = 0; i < numberOfObjects; i++)
 		{	
@@ -74,7 +86,7 @@ MovingObject ** Game::FindMovingObjectInArea(double x, double y, double r)
 			return nullptr;
 		}
 		MovingObject ** MovingObjects;
-		MovingObjects = new MovingObject*[numberOfMaxEntries];
+		MovingObjects = new MovingObject*[numberOfMovingObjects];
 		int idsFound = 0;
 
 		for (int i = 0; i < numberOfObjects; i++)
@@ -111,7 +123,7 @@ MovingObject ** Game::FindMovingObjectInArea(double x, double y, double r, doubl
 		return nullptr;
 	}
 	MovingObject ** MovingObjects;
-	MovingObjects = new MovingObject*[numberOfMaxEntries];
+	MovingObjects = new MovingObject*[numberOfMovingObjects];
 	int idsFound = 0;
 
 	for (int i = 0; i < numberOfObjects; i++)

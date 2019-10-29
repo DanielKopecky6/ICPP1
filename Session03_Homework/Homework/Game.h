@@ -10,6 +10,7 @@ private:
 	int numberOfObjects;
 
 public:
+	~Game();
 	Game(int numberOfMaxEntries);
 	Object ** objectsField;
 	void InsertObject(Object* aObject);

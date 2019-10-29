@@ -35,7 +35,6 @@ int main() {
 	if (so != nullptr)
 		std::cout << "objekt je StatickyObjekt(nebo jeho potomek) " << so->GetObstructionType();
 
-
 	std::cin.get();
 	return 0;
 
