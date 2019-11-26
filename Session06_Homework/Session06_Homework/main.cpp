@@ -37,7 +37,7 @@ void load() {
 	delete[] personArray;
 }
 
-void binarySave() {
+void saveBinary() {
 	Person* personArray = new Person[ARRAY_SIZE];
 
 	personArray[0] = Person(std::string("Jan"), std::string("Novak"), Date(1, 1, 2000), Address("Pardubice", "17.Listopadu", 55532));
@@ -50,17 +50,27 @@ void binarySave() {
 	file.open("file.bin", std::ios_base::binary);
 
 		file.write((const char*)&personArray, sizeof(personArray));
-
+		for (int i = 0; i < ARRAY_SIZE; i++) {
+			saveBinary(file, personArray[i]);
+		}
+		
 	file.close();
 	delete[] personArray;
 }
 
-void binaryLoad() {
+
+
+void loadBinary() {
 	Person* personArray = new Person[ARRAY_SIZE];
 	std::ifstream file;
-	file.open("file.txt", std::ios_base::binary);
+	file.open("file.bin", std::ios_base::binary);
 
-	file.read((char*)personArray, sizeof(personArray));
+	file.read((char*)personArray, sizeof(ARRAY_SIZE));
+
+	for (int i = 0; i < ARRAY_SIZE; i++) {
+		loadBinary(file, personArray[i]);
+		std::cout << personArray[i];
+	}
 
 	delete[] personArray;
 }
@@ -68,8 +78,8 @@ void binaryLoad() {
 int main(void) {
 	save();
 	load();
-	//binarySave();
-	//binaryLoad();
+	saveBinary();
+	loadBinary();
 
 	std::cin.get();
 	return 0;

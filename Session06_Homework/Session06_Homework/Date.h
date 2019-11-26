@@ -2,6 +2,7 @@
 #define DATE_H
 
 #include <iostream>
+#include <fstream>
 
 struct Date {
 	Date() {};
@@ -13,9 +14,11 @@ struct Date {
 
 };
 
-std::ostream& operator<<(std::ostream& os, const Date& date);
+std::ostream& operator<<(std::ostream& outputStream, const Date& date);
 std::istream& operator>>(std::istream& is, Date& date);
 
+void saveBinary(std::ofstream& outputStream, const Date& date);
+void loadBinary(std::ifstream& inputStream, Date& date);
 
 
 

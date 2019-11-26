@@ -18,3 +18,15 @@ Date::Date(int aDay, int aMonth, int aYear)
 	_month = aMonth;
 	_year = aYear;
 }
+
+void saveBinary(std::ofstream& outputStream, const Date& date) {
+	outputStream.write((const char*)& date._day, sizeof(int));
+	outputStream.write((const char*)& date._month, sizeof(int));
+	outputStream.write((const char*)& date._year, sizeof(int));
+}
+
+void loadBinary(std::ifstream& inputStream, Date& date) {
+	inputStream.read((char*) & (date._day), sizeof(int));
+	inputStream.read((char*) & (date._month), sizeof(int));
+	inputStream.read((char*) & (date._year), sizeof(int));
+}
