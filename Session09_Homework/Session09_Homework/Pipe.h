@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <exception>
 #include <vector>
 
 struct APipeElement;
@@ -18,6 +19,7 @@ struct APipeElement {
 	virtual bool IsConnectionOk(const IPipe* aPipe)const = 0;
 	int _x;
 	int _y;
+
 };
 
 struct Pipe : IPipe {
@@ -36,7 +38,7 @@ struct PipeElement : APipeElement {
 private:
 	char sign;
 public:
-	PipeElement(char aSign) { aSign = sign; }
+	PipeElement(int _aX, int _aY, char aSign) {_x = _aX, _y = _aY , sign = aSign; }
 	bool IsConnectionOk(const IPipe* aPipe) const;
 };
 

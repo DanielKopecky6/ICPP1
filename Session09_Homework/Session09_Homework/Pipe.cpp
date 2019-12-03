@@ -4,43 +4,57 @@ using namespace std;
 Pipe::Pipe(const int aSize)
 {
 	size = aSize;
-
-	for (int i = 0; i < aSize; i++)
+	for (size_t i = 0; i < size; i++)
 	{
-		matrix.insert(matrix.begin(), std::vector<APipeElement*>());
+		for (size_t j = 0; j < size; j++)
+		{
+			
+		}
 
 	}
+	std::vector<std::vector<APipeElement*>> aMatrix(size, vector<APipeElement*>(size));
+	matrix = aMatrix;
 }
 
 void Pipe::insertElement(const int aX, const int aY, APipeElement* aElement)
-{	
+{
 	
-	matrix.at(aX).insert(matrix.at(aX).end(), aElement);
+	matrix[aX][aY] = aElement;
+
+
 }
 
 
 const APipeElement* Pipe::GetElement(int aX, int aY) const
 {
 	APipeElement* prvek;
-	if (matrix.size() < aX || aX < 0 || matrix.at(aX).size() < aY || aY < 0) {
-		throw std::exception("Invalid coordinates");
+	try
+	{
+		if (matrix.size() < aX || aX < 0 || matrix.at(aX).size() < aY || aY < 0) {
+			throw std::logic_error("Accesing invalid coordinates");
+		}
+			prvek = matrix[aX][aY];
+			return prvek;
 	}
-	prvek = matrix.at(aX).at(aY);
-	return prvek;
+	catch (std::exception& message)
+	{
+		std::cout << message.what();
+	}
+	
 }
 bool Pipe::IsPipeOK() const
 {
-	APipeElement* prvek;
+	APipeElement* prvek = nullptr;
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < size; j++)
-			if(j<size && i<size) {
-				prvek = matrix.at(i).at(j);
+		for (int j = 0; j < size; j++){
+
+				prvek = matrix[i][j];
 			if (prvek->IsConnectionOk(this) == false) {
 				return false;
 			}
-			}
-
+			
+		}
 	}
 	return true;
 }
@@ -50,11 +64,11 @@ bool PipeElement::IsConnectionOk(const IPipe * aPipe) const
 	switch (sign)
 	{
 	case '-':
-		if (aPipe->GetElement(_x - 1, _y) == nullptr && aPipe->GetElement(_x + 1, _y) == nullptr)
+		if ((aPipe->GetElement(_x , _y - 1) == nullptr) && (aPipe->GetElement(_x , _y + 1) == nullptr))
 			return false;
 		break;
 	case 'I':
-		if (aPipe->GetElement(_x, _y - 1) == nullptr && aPipe->GetElement(_x, _y + 1) == nullptr)
+		if (aPipe->GetElement(_x - 1, _y ) == nullptr && aPipe->GetElement(_x + 1, _y ) == nullptr)
 			return false;
 		break;
 	case '+':
@@ -65,7 +79,7 @@ bool PipeElement::IsConnectionOk(const IPipe * aPipe) const
 	case 'O':
 		break;
 	case 'T':
-		if (aPipe->GetElement(_x - 1, _y) == nullptr && aPipe->GetElement(_x + 1, _y) == nullptr && aPipe->GetElement(_x, _y - 1) == nullptr)
+		if (aPipe->GetElement(_x, _y - 1 ) == nullptr && aPipe->GetElement(_x , _y + 1) == nullptr && aPipe->GetElement(_x + 1, _y) == nullptr)
 			return false;
 		break;
 	default:
