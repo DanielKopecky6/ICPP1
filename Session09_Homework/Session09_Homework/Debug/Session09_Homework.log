@@ -1,6 +1,5 @@
 ﻿  Pipe.cpp
-c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(7): warning C4018: '<': signed/unsigned mismatch
-c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(9): warning C4018: '<': signed/unsigned mismatch
-c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(44): warning C4715: 'Pipe::GetElement': not all control paths return a value
+c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(14): warning C4018: '>': signed/unsigned mismatch
+c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(34): warning C4018: '>': signed/unsigned mismatch
+c:\users\dan\source\repos\session09_homework\session09_homework\pipe.cpp(33): warning C4101: 'sign': unreferenced local variable
   Session09_Homework.vcxproj -> C:\Users\Dan\source\repos\Session09_Homework\Debug\Session09_Homework.exe

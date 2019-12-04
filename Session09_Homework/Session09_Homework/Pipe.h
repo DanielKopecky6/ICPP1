@@ -15,8 +15,12 @@ struct IPipe {
 };
 
 struct APipeElement {
+private:
+	char sign;
+public:
 	virtual ~APipeElement() { };
 	virtual bool IsConnectionOk(const IPipe* aPipe)const = 0;
+	virtual const char ReturnSign() const = 0;
 	int _x;
 	int _y;
 
@@ -39,6 +43,7 @@ private:
 	char sign;
 public:
 	PipeElement(int _aX, int _aY, char aSign) {_x = _aX, _y = _aY , sign = aSign; }
+	const char ReturnSign() const;
 	bool IsConnectionOk(const IPipe* aPipe) const;
 };
 

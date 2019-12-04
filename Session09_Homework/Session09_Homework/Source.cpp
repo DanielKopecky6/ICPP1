@@ -25,12 +25,16 @@ IPipe* loadPipe(std::string filePath)
 	pipe = new Pipe(size);
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < size; j++)
+		for (int j = 0; j < size;)
 		{
 			char c = file.get();
-
+			if (c != '\n'){
+				
 			newElement = new PipeElement(i, j, c);
 			pipe->insertElement(i,j,newElement);
+			j++;
+			}
+
 		}
 	}
 	file.close();
@@ -44,13 +48,13 @@ IPipe* loadPipe(std::string filePath)
 int main()
 {
 	IPipe* pipe1 = loadPipe("pipe1.txt");
-	if(pipe1 != nullptr){
-	std::cout << pipe1->IsPipeOK() << std::endl;
+	if (pipe1 != nullptr) {
+		std::cout << pipe1->IsPipeOK() << std::endl;
 	}
 	else {
 		std::cout << "Invalid file path" << std::endl;
 	}
-
+	
 	IPipe* pipe2 = loadPipe("pipe2.txt");
 	if (pipe2 != nullptr) {
 		std::cout << pipe2->IsPipeOK() << std::endl;
